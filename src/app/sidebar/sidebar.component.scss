@@ -72,17 +72,18 @@
     font-size: 18px;
     font-weight: 100;
   }
+
   ::-webkit-scrollbar {
     width: 5.5px;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgb(185, 185, 185);
     border-radius: 10px;
+    background-color: rgb(206, 206, 206);
   }
 
   #sidebarContent {
     flex-grow: 1;
-    overflow: auto;
+    overflow: overlay;
 
     .conversation {
       height: 67px;
