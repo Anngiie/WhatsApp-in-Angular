@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ctrl/ngx-emoji-mart/picker";
 
 body {
   margin: 0px;
-  font-family: Helvetica;
+  font-family: sans-serif;
   color: #a2a3a4;
 
   a {

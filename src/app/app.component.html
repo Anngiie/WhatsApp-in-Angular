@@ -2,15 +2,16 @@
 <div id="background_body"></div>
 
 <div id="chatContainer">
-  <app-sidebar></app-sidebar>
+  <app-sidebar (conversationClicked)="onConversationSelected($event)"></app-sidebar>
   <div id="chat">
-    <div id="chatPlaceholder">
-      <img width=350 src="../assets/images/phoneIcon.png"/>
+    <div id="chatPlaceholder" *ngIf="!conversation" >
+      <img  src="../assets/images/phoneIcon.png">
       <h2>Keep your phone connected</h2>
       <p>WhatsApp connects your phone to sync messages. To reduce <br/> data usage, connect your phone to Wi-Fi.</p>
       <div class="seperator"></div>
-      <p>WhatsApp is available for Windows. <a href="#">Get it here.</a></p>
+      <p>WhatsApp is available for Windows. <a href="https://www.whatsapp.com/download" target="_blank">Get it here.</a></p>
    </div>
+   <app-chat [conversation]= "conversation" *ngIf="conversation"></app-chat>
   </div>
 </div>
 

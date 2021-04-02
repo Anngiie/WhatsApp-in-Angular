@@ -34,7 +34,7 @@
 
   #chat {
     background-color: #f8fafb;
-    flex-grow: 1;
+    width: 80%;
   }
   #chatPlaceholder {
     display: flex;
@@ -42,15 +42,22 @@
     justify-content: center;
     height: 100%;
     flex-direction: column;
+    img {
+      max-width: 50%;
+      height: auto;
+    }
     h2 {
       color: #6d6d6d;
-      font-size: 32px;
+      //font-size: 32px;
       font-weight: normal;
       margin-bottom: 10px;
+      font-size: 2.3vw;
+      text-align: center;
     }
     p {
-      font-size: 14px;
+      //font-size: 14px;
       text-align: center;
+      font-size: 1vw;
     }
     .seperator {
       width: 80%;
