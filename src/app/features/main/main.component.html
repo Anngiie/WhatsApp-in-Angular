@@ -1,0 +1,143 @@
+<div id="appWrapper">
+  <app-nav-sidebar (sectionChanged)="onSectionChanged($event)"></app-nav-sidebar>
+
+  <!-- Chats: column 2 = sidebar, column 3 = chat -->
+  <div id="contentPanel" *ngIf="activeSection === 'chats'">
+    <app-sidebar
+      filterMode="all"
+      (conversationClicked)="onConversationSelected($event)"
+    ></app-sidebar>
+  </div>
+  <div id="chat" *ngIf="activeSection === 'chats'">
+    <div id="chatPlaceholder" *ngIf="!conversation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <h2>WhatsApp Web</h2>
+      <p>Send and receive messages without keeping your phone online.<br/>Use WhatsApp on up to 4 linked devices and 1 phone at the same time.</p>
+    </div>
+    <app-chat [conversation]="conversation" *ngIf="conversation"></app-chat>
+  </div>
+
+  <!-- Calls: column 2 = call history, column 3 = call actions -->
+  <div id="contentPanel" *ngIf="activeSection === 'calls'">
+    <app-calls></app-calls>
+  </div>
+  <div id="chat" *ngIf="activeSection === 'calls'">
+    <div class="callsPlaceholder">
+      <div class="callActions">
+        <button class="callBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>Start call</span>
+        </button>
+        <button class="callBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          <span>New call link</span>
+        </button>
+        <button class="callBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 0 1 7.07 17.07L12 22l-7.07-2.93A10 10 0 0 1 12 2z"/>
+            <circle cx="8" cy="13" r="1"/><circle cx="12" cy="13" r="1"/><circle cx="16" cy="13" r="1"/>
+            <path d="M7 9h10"/>
+          </svg>
+          <span>Call a number</span>
+        </button>
+        <button class="callBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <path d="M10 14h4v4h-4z"/>
+          </svg>
+          <span>Schedule call</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status: column 2 = status list, column 3 = placeholder -->
+  <div id="contentPanel" *ngIf="activeSection === 'status'">
+    <app-status></app-status>
+  </div>
+  <div id="chat" *ngIf="activeSection === 'status'">
+    <div class="statusPlaceholder">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+      <h2>Status Updates</h2>
+      <p>Share photos, videos and text messages<br/>that disappear after 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- Channels: column 2 = channel list, column 3 = channel detail or placeholder -->
+  <div id="contentPanel" *ngIf="activeSection === 'channels'">
+    <app-channels (channelSelected)="onChannelSelected($event)"></app-channels>
+  </div>
+  <div id="chat" *ngIf="activeSection === 'channels'">
+    <div id="channelView" *ngIf="selectedChannel; else channelPlaceholder">
+      <div id="channelHeaderBar">
+        <div class="channel-pic">
+          <img [src]="selectedChannel.name | avatarUrl" alt="Channel" />
+        </div>
+        <div class="channelHeaderInfo">
+          <div class="channelHeaderName">{{ selectedChannel.name }}</div>
+          <div class="channelHeaderFollowers">{{ selectedChannel.followers }} followers</div>
+        </div>
+        <button class="followBtn" [class.following]="selectedChannel.followed" (click)="toggleChannelFollow()">
+          {{ selectedChannel.followed ? 'Unfollow' : 'Follow' }}
+        </button>
+      </div>
+      <div class="channelPosts">
+        <div class="channel-post" *ngFor="let post of selectedChannel.posts">
+          <div class="postBody">{{ post.body }}</div>
+          <div class="postTime">{{ post.time }}</div>
+        </div>
+      </div>
+    </div>
+    <ng-template #channelPlaceholder>
+      <div class="statusPlaceholder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+          <path d="M17 10H3"/><path d="M21 6H3"/><path d="M21 14H3"/><path d="M17 18H3"/>
+        </svg>
+        <h2>Channels</h2>
+        <p>Select a channel to view its content<br/>and stay updated on topics you care about.</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Communities -->
+  <div id="contentPanel" *ngIf="activeSection === 'communities'">
+    <app-communities></app-communities>
+  </div>
+  <div id="chat" *ngIf="activeSection === 'communities'">
+    <div class="statusPlaceholder">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <h2>Communities</h2>
+      <p>Connect with communities to share<br/>and discuss topics you care about.</p>
+    </div>
+  </div>
+
+  <!-- Profile / Settings -->
+  <div id="contentPanel" *ngIf="activeSection === 'profile' || activeSection === 'settings'">
+    <app-settings [embedded]="true"></app-settings>
+  </div>
+  <div id="chat" *ngIf="activeSection === 'profile' || activeSection === 'settings'">
+    <div class="statusPlaceholder">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      <h2>Settings</h2>
+      <p>Manage your profile, privacy,<br/>notifications, and more.</p>
+    </div>
+  </div>
+</div>

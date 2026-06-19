@@ -1,0 +1,92 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--bg-primary, #161817);
+}
+
+.login-card {
+  background: var(--bg-secondary, #1f2221);
+  border-radius: 12px;
+  padding: 40px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+
+  .logo {
+    margin-bottom: 20px;
+    svg { color: var(--primary-color, #00a884); }
+    h1 { color: var(--text-primary, #e9edef); font-weight: 400; font-size: 22px; margin: 10px 0 0; }
+  }
+
+  .tabs {
+    display: flex;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color, #2a2f2e);
+
+    .tab {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary, #8696a0);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+
+      &:hover { color: var(--text-primary, #e9edef); }
+
+      &.active {
+        background-color: var(--primary-color, #00a884);
+        color: #111b21;
+      }
+    }
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+    input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color, #2a2f2e);
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+      background: var(--bg-input, #242625);
+      color: var(--text-primary, #e9edef);
+
+      &:focus { border-color: var(--primary-color, #00a884); }
+      &::placeholder { color: var(--text-tertiary, #667781); }
+    }
+  }
+
+  .error {
+    color: var(--danger-color, #e74c3c);
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color, #00a884);
+    color: #111b21;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 4px;
+
+    &:hover { background-color: var(--primary-hover, #06cf9c); }
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+  }
+}

@@ -1,0 +1,218 @@
+#appWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-primary, #161817);
+}
+
+#contentPanel {
+  flex: 0 0 30%;
+  min-width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid var(--border-color, #2a2f2e);
+  background-color: var(--bg-primary, #161817);
+}
+
+#contentPanel {
+  app-sidebar,
+  app-settings,
+  app-calls,
+  app-status,
+  app-channels,
+  app-communities {
+    display: block;
+    height: 100%;
+  }
+}
+
+#chat {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary, #161817);
+  min-width: 0;
+
+  app-chat {
+    display: block;
+    height: 100%;
+  }
+}
+
+#chatPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  background-color: var(--bg-primary, #161817);
+  color: var(--text-secondary, #8696a0);
+
+  svg {
+    margin-bottom: 20px;
+    color: var(--text-tertiary, #667781);
+  }
+
+  h2 {
+    color: var(--text-primary, #e9edef);
+    font-weight: 300;
+    font-size: 28px;
+    margin: 0 0 12px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary, #8696a0);
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.callsPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--bg-primary, #161817);
+
+  .callActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 40px;
+
+    .callBtn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 160px;
+      height: 140px;
+      border: none;
+      border-radius: 16px;
+      background-color: var(--bg-secondary, #1f2221);
+      color: var(--text-primary, #e9edef);
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
+
+      svg { color: var(--primary-color, #00a884); }
+      span { font-size: 13px; }
+
+      &:hover { background-color: var(--bg-hover, rgba(255,255,255,0.06)); }
+    }
+  }
+}
+
+.statusPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  background-color: var(--bg-primary, #161817);
+  color: var(--text-secondary, #8696a0);
+
+  svg { margin-bottom: 20px; color: var(--text-tertiary, #667781); }
+
+  h2 {
+    color: var(--text-primary, #e9edef);
+    font-weight: 300;
+    font-size: 28px;
+    margin: 0 0 12px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary, #8696a0);
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+#channelView {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary, #161817);
+
+  #channelHeaderBar {
+    min-height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    background-color: var(--bg-secondary, #1f2221);
+    border-bottom: 1px solid var(--border-color, #2a2f2e);
+
+    .channel-pic {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      img { width: 100%; height: 100%; }
+    }
+
+    .channelHeaderInfo {
+      flex: 1; min-width: 0;
+      .channelHeaderName { color: var(--text-primary, #e9edef); font-size: 15px; font-weight: 500; }
+      .channelHeaderFollowers { color: var(--text-secondary, #8696a0); font-size: 12px; margin-top: 1px; }
+    }
+
+    .followBtn {
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--primary-color, #00a884);
+      background: transparent;
+      color: var(--primary-color, #00a884);
+      font-size: 13px;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-family: inherit;
+      transition: all 0.15s;
+
+      &:hover { background: rgba(0, 168, 132, 0.1); }
+
+      &.following {
+        background: var(--primary-color, #00a884);
+        color: #111b21;
+      }
+    }
+  }
+
+  .channelPosts {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: var(--bg-primary, #161817);
+    background-image: url('/assets/images/whatsapp-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    .channel-post {
+      background-color: var(--msg-other-bg, #242625);
+      border-radius: 8px;
+      padding: 8px 12px;
+      max-width: 60%;
+      margin-top: 4px;
+      align-self: flex-start;
+
+      .postBody { color: var(--text-primary, #e9edef); font-size: 14px; line-height: 1.5; word-break: break-word; }
+      .postTime { color: var(--text-tertiary, #667781); font-size: 11px; margin-top: 4px; text-align: right; }
+    }
+  }
+}

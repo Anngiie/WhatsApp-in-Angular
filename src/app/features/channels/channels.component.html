@@ -1,0 +1,32 @@
+<div id="channelList">
+  <div class="channelHeader">
+    <span class="title">Channels</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="addIcon">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+
+  <div class="introText">
+    Stay updated on your favourite topics. Find channels to follow below.
+  </div>
+
+  <div class="channelsList">
+    <div class="channel-row" *ngFor="let channel of channels" (click)="selectChannel(channel)">
+      <div class="channel-pic">
+        <img [src]="channel.name | avatarUrl" alt="Channel" />
+      </div>
+      <div class="channel-info">
+        <div class="channel-name">{{ channel.name }}</div>
+        <div class="channel-followers">{{ channel.followers }} followers</div>
+      </div>
+      <button class="followBtn" [class.following]="channel.followed" (click)="toggleFollow(channel, $event)">
+        {{ channel.followed ? 'Unfollow' : 'Follow' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="bottomActions">
+    <button class="discoverBtn">Discover more</button>
+    <button class="createBtn">Create channel</button>
+  </div>
+</div>

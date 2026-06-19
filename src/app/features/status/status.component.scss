@@ -1,0 +1,125 @@
+#statusPanel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary, #161817);
+
+  #statusHeader {
+    min-height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary, #e9edef);
+    }
+
+    .addStatusBtn {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: none;
+      background-color: var(--bg-active, #0f3e2c);
+      color: var(--primary-color, #00a884);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      &:hover { background-color: #0f4e3c; }
+    }
+  }
+
+  #myStatus {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin: 2px 8px;
+    border-radius: 10px;
+
+    &:hover { background-color: #242625; }
+
+    .status-pic {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      padding: 3px;
+      border: 3px solid var(--primary-color, #00a884);
+      margin-right: 14px;
+      flex-shrink: 0;
+
+      img { width: 100%; height: 100%; border-radius: 50%; }
+    }
+
+    .status-info {
+      .status-name {
+        color: var(--text-primary, #e9edef);
+        font-size: 15px;
+      }
+      .status-hint {
+        color: var(--text-secondary, #8696a0);
+        font-size: 13px;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  #recentLabel {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-tertiary, #667781);
+    padding: 16px 16px 8px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  #statusList {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin: 2px 8px;
+      border-radius: 10px;
+
+      &:hover { background-color: #242625; }
+
+      .status-pic {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        padding: 3px;
+        border: 3px solid var(--primary-color, #00a884);
+        margin-right: 14px;
+        flex-shrink: 0;
+
+        img { width: 100%; height: 100%; border-radius: 50%; }
+
+        &.viewed {
+          border-color: var(--text-tertiary, #667781);
+        }
+      }
+
+      .status-info {
+        .status-name {
+          color: var(--text-primary, #e9edef);
+          font-size: 15px;
+        }
+        .status-time {
+          color: var(--text-secondary, #8696a0);
+          font-size: 12px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+}

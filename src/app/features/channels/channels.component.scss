@@ -1,0 +1,109 @@
+#channelList {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary, #161817);
+
+  .channelHeader {
+    min-height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+
+    .title { font-size: 20px; font-weight: 500; color: var(--text-primary, #e9edef); }
+    .addIcon { color: var(--text-secondary, #8696a0); cursor: pointer; &:hover { color: var(--text-primary); } }
+  }
+
+  .introText {
+    padding: 0 16px 16px;
+    font-size: 13px;
+    color: var(--text-secondary, #8696a0);
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  .channelsList {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+
+    .channel-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      margin: 2px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+
+      &:hover { background-color: #242625; }
+
+      .channel-pic {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 12px;
+        flex-shrink: 0;
+        img { width: 100%; height: 100%; }
+      }
+
+      .channel-info {
+        flex: 1; min-width: 0;
+        .channel-name { color: var(--text-primary, #e9edef); font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .channel-followers { color: var(--text-secondary, #8696a0); font-size: 12px; margin-top: 2px; }
+      }
+
+      .followBtn {
+        padding: 6px 18px;
+        border-radius: 20px;
+        border: 1px solid var(--primary-color, #00a884);
+        background: transparent;
+        color: var(--primary-color, #00a884);
+        font-size: 13px;
+        cursor: pointer;
+        flex-shrink: 0;
+        font-family: inherit;
+        transition: all 0.15s;
+
+        &:hover { background: rgba(0, 168, 132, 0.1); }
+
+        &.following {
+          background: var(--primary-color, #00a884);
+          color: #111b21;
+        }
+      }
+    }
+  }
+
+  .bottomActions {
+    flex-shrink: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+      &:hover { opacity: 0.85; }
+    }
+
+    .discoverBtn {
+      background: var(--bg-input, #242625);
+      color: var(--text-primary, #e9edef);
+    }
+
+    .createBtn {
+      background: var(--primary-color, #00a884);
+      color: #111b21;
+    }
+  }
+}
+

@@ -1,0 +1,30 @@
+<div id="statusPanel">
+  <div id="statusHeader">
+    <span class="title">Status</span>
+    <button class="addStatusBtn">Add status</button>
+  </div>
+
+  <div id="myStatus">
+    <div class="status-pic">
+      <app-avatar [name]="username"></app-avatar>
+    </div>
+    <div class="status-info">
+      <div class="status-name">My status</div>
+      <div class="status-hint">Click to add status update</div>
+    </div>
+  </div>
+
+  <div id="recentLabel">Recent</div>
+
+  <div id="statusList">
+    <div class="status-row" *ngFor="let s of recentStatuses">
+      <div class="status-pic" [class.viewed]="s.viewed">
+        <img [src]="s.name | avatarUrl" alt="Profile" />
+      </div>
+      <div class="status-info">
+        <div class="status-name">{{ s.name }}</div>
+        <div class="status-time">{{ s.time }}</div>
+      </div>
+    </div>
+  </div>
+</div>

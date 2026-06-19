@@ -1,0 +1,60 @@
+<div id="container">
+  <div id="header">
+    <div class="avatarSection">
+      <div class="picture">
+        <img [src]="conversation?.name | avatarUrl" alt="Profile" />
+      </div>
+      <div class="nameSection">{{ conversation?.name || '' }}</div>
+    </div>
+    <div class="actionButtons">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#54656f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+      </svg>
+    </div>
+  </div>
+  <div id="body">
+    <div class="message" [ngClass]="{ me: message.me }" *ngFor="let message of conversation?.messages">
+      <div class="messageContent" [class.attachmentMsg]="message.attachment" (click)="message.attachment && openAttachment(message)">
+        <img *ngIf="message.image" [src]="message.image" class="messageImage" alt="Photo" />
+        <span *ngIf="message.body">{{ message.body }}</span>
+        <div class="messageFooter">
+          <svg *ngIf="message.me" class="checkmark" [class.read]="message.read" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span class="time">{{ message.time }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="textarea">
+      <svg class="iconInside" (click)="triggerAttachment()" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      <svg class="iconInside" (click)="toggleEmojiPicker($event)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+        <line x1="9" y1="9" x2="9.01" y2="9"/>
+        <line x1="15" y1="9" x2="15.01" y2="9"/>
+      </svg>
+      <textarea [(ngModel)]="message" (keyup.enter)="submitMessage($event)" placeholder="Type a message"></textarea>
+      <svg class="iconInside micIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+        <line x1="12" y1="19" x2="12" y2="22"/>
+      </svg>
+      <div #emojiPicker *ngIf="emojiPickerVisible" (click)="$event.stopPropagation()">
+        <emoji-mart
+          (emojiClick)="emojiClicked($event)"
+          style="position: absolute; bottom: 60px; left: 0;"
+          [darkMode]="true"
+          [showPreview]="false"
+          [enableSearch]="false"
+          [showSingleCategory]="true"
+          perLine="7"
+        ></emoji-mart>
+      </div>
+    </div>
+    <input #fileInput type="file" hidden (change)="onFileSelected($event)" />
+  </div>
+</div>

@@ -1,0 +1,176 @@
+<div class="settings-panel">
+  <div class="settings-header">
+    <h2>Settings</h2>
+  </div>
+
+  <div class="settings-body">
+
+    <!-- Profile -->
+    <div class="section">
+      <div class="section-title">Profile</div>
+      <div class="profile-row">
+        <div class="profile-pic">
+          <app-avatar [name]="displayName"></app-avatar>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">{{ displayName || 'Your Name' }}</div>
+          <div class="profile-about">{{ about || 'Available' }}</div>
+        </div>
+      </div>
+      <div class="setting-item">
+        <span>Name</span>
+        <input type="text" [(ngModel)]="displayName" placeholder="Your name" (change)="saveProfile()" />
+      </div>
+      <div class="setting-item">
+        <span>About</span>
+        <input type="text" [(ngModel)]="about" placeholder="Add a bio" />
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="section">
+      <div class="section-title">Privacy</div>
+      <div class="setting-item">
+        <span>Last seen &amp; online</span>
+        <span class="value">{{ lastSeen }}</span>
+      </div>
+      <div class="setting-item">
+        <span>Profile photo</span>
+        <span class="value">{{ profilePhoto }}</span>
+      </div>
+      <div class="setting-item">
+        <span>About</span>
+        <span class="value">{{ aboutPrivacy }}</span>
+      </div>
+      <div class="setting-item">
+        <span>Status</span>
+        <span class="value">{{ statusPrivacy }}</span>
+      </div>
+      <div class="setting-item">
+        <span>Read receipts</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="readReceipts" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>Groups</span>
+        <span class="value">{{ groupInvite }}</span>
+      </div>
+      <div class="setting-item">
+        <span>Blocked contacts</span>
+        <span class="value">{{ blockedContacts }}</span>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="section">
+      <div class="section-title">Security</div>
+      <div class="setting-item">
+        <span>Two-step verification</span>
+        <span class="value">{{ twoStepEnabled ? 'On' : 'Off' }}</span>
+      </div>
+      <div class="setting-item">
+        <span>Privacy lock</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="privacyLockEnabled" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="section">
+      <div class="section-title">Notifications</div>
+      <div class="setting-item">
+        <span>Message notifications</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="messageNotifications" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>Group notifications</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="groupNotifications" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>Call notifications</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="callNotifications" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>Preview messages</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="previewMessages" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Chat Settings -->
+    <div class="section">
+      <div class="section-title">Chat settings</div>
+      <div class="setting-item">
+        <span>Theme</span>
+        <span class="value">{{ theme }}</span>
+      </div>
+      <div class="setting-item">
+        <span>Wallpaper</span>
+        <span class="value">Default</span>
+      </div>
+      <div class="setting-item">
+        <span>Enter to send</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="enterToSend" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>Keep chats archived</span>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="keepArchived" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>Font size</span>
+        <span class="value">{{ fontSize }}</span>
+      </div>
+    </div>
+
+    <!-- Help -->
+    <div class="section">
+      <div class="section-title">Help</div>
+      <div class="setting-item clickable">
+        <span>Help center</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+      </div>
+      <div class="setting-item clickable">
+        <span>Contact us</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+      </div>
+      <div class="setting-item clickable">
+        <span>Privacy policy</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+      </div>
+      <div class="setting-item clickable">
+        <span>Terms of service</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+      </div>
+    </div>
+
+    <!-- Log Out -->
+    <div class="section">
+      <div class="setting-item logout-btn" (click)="logout()">
+        <span>Log out</span>
+      </div>
+    </div>
+
+    <div style="height: 32px;"></div>
+  </div>
+</div>

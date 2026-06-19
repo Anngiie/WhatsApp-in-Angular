@@ -1,0 +1,39 @@
+<div id="callsPanel">
+  <div id="callsHeader">
+    <span class="title">Calls</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="newCallIcon">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+
+  <div id="callsSearch">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+    </svg>
+    <input [(ngModel)]="searchText" type="text" placeholder="Search by name or phone number" />
+  </div>
+
+  <div id="callsList">
+    <div class="call-row" *ngFor="let call of filteredCalls">
+      <div class="call-pic">
+        <img [src]="call.name | avatarUrl" alt="Profile" />
+      </div>
+      <div class="call-info">
+        <div class="call-name">{{ call.name }}</div>
+        <div class="call-status" [class.missed]="call.type === 'missed'">
+          <svg *ngIf="call.type === 'outgoing'" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 7 7 17M7 7h10v10"/>
+          </svg>
+          <svg *ngIf="call.type === 'incoming'" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17 17 7M17 17H7V7"/>
+          </svg>
+          <svg *ngIf="call.type === 'video'" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/>
+          </svg>
+          {{ getStatusLabel(call.type) }}
+        </div>
+      </div>
+      <div class="call-time">{{ call.time }}</div>
+    </div>
+  </div>
+</div>
