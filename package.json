@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"cd server && node --watch src/index.js\"",
+    "start": "concurrently \"ng serve\" \"node server/src/index.js\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "server": "node server/src/index.js",
-    "dev:server": "cd server && node --watch src/index.js",
+    "dev:server": "node server/src/index.js",
     "postinstall": "cd server && npm install"
   },
   "private": true,

@@ -4,6 +4,10 @@
   justify-content: center;
   height: 100vh;
   background-color: var(--bg-primary, #161817);
+  background-image: url('/assets/images/whatsapp-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .login-card {
